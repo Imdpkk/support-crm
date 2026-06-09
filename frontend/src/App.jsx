@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
+const API_URL = "https://support-crm-yo12.onrender.com";
+
 function App() {
   const [tickets, setTickets] = useState([]);
 
@@ -22,12 +24,12 @@ function App() {
   const fetchTickets = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/tickets"
+        `${API_URL}/api/tickets`
       );
 
       setTickets(response.data);
     } catch (error) {
-      console.log(error);
+      console.log("Fetch Error:", error);
     }
   };
 
@@ -41,7 +43,7 @@ function App() {
   const createTicket = async () => {
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/tickets",
+        `${API_URL}/api/tickets`,
         formData
       );
 
@@ -56,7 +58,7 @@ function App() {
 
       alert("Ticket Created Successfully!");
     } catch (error) {
-      console.log(error);
+      console.log("Create Error:", error);
       alert("Error creating ticket");
     }
   };
@@ -67,7 +69,7 @@ function App() {
   ) => {
     try {
       await axios.put(
-        `http://127.0.0.1:8000/api/tickets/${ticketId}`,
+        `${API_URL}/api/tickets/${ticketId}`,
         {
           status: newStatus,
         }
@@ -75,7 +77,7 @@ function App() {
 
       fetchTickets();
     } catch (error) {
-      console.log(error);
+      console.log("Update Error:", error);
       alert("Error updating status");
     }
   };
@@ -128,7 +130,7 @@ function App() {
           <h2>{openTickets}</h2>
         </div>
 
-        <div className="card-box progress">
+        <div className="card-box progress-card">
           In Progress
           <h2>{progressTickets}</h2>
         </div>
