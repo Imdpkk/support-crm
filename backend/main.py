@@ -2,11 +2,22 @@ from fastapi import FastAPI, Depends, Query
 from sqlalchemy.orm import Session
 from datetime import datetime
 
+from fastapi.middleware.cors import CORSMiddleware
+# app = FastAPI()
+
 from database import engine, get_db
 from models import Base, Ticket
 from schemas import TicketCreate, TicketUpdate
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 Base.metadata.create_all(bind=engine)
 
@@ -23,7 +34,7 @@ def create_ticket(ticket: TicketCreate, db: Session = Depends(get_db)):
 
     ticket_id = f"TKT-{ticket_count:03d}"
 
-    new_ticket = Ticket(
+    new_ticket = Ticket( 
         ticket_id=ticket_id,
         customer_name=ticket.customer_name,
         customer_email=ticket.customer_email,
