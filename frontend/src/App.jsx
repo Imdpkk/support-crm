@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./App.css";
 
 function App() {
   const [tickets, setTickets] = useState([]);
@@ -113,139 +114,139 @@ function App() {
   ).length;
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <div className="container-box">
       <h1>Customer Support CRM</h1>
 
-      <hr />
+      <div className="dashboard-cards">
+        <div className="card-box total">
+          Total Tickets
+          <h2>{totalTickets}</h2>
+        </div>
 
-      <h2>Dashboard</h2>
+        <div className="card-box open">
+          Open
+          <h2>{openTickets}</h2>
+        </div>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          marginBottom: "20px",
-          fontWeight: "bold",
-        }}
-      >
-        <div>Total: {totalTickets}</div>
-        <div>Open: {openTickets}</div>
-        <div>In Progress: {progressTickets}</div>
-        <div>Closed: {closedTickets}</div>
+        <div className="card-box progress">
+          In Progress
+          <h2>{progressTickets}</h2>
+        </div>
+
+        <div className="card-box closed">
+          Closed
+          <h2>{closedTickets}</h2>
+        </div>
       </div>
 
-      <hr />
+      <div className="form-box">
+        <h2>Create Ticket</h2>
 
-      <h2>Create Ticket</h2>
+        <input
+          type="text"
+          name="customer_name"
+          placeholder="Customer Name"
+          value={formData.customer_name}
+          onChange={handleChange}
+        />
 
-      <input
-        type="text"
-        name="customer_name"
-        placeholder="Customer Name"
-        value={formData.customer_name}
-        onChange={handleChange}
-      />
+        <input
+          type="email"
+          name="customer_email"
+          placeholder="Email"
+          value={formData.customer_email}
+          onChange={handleChange}
+        />
 
-      <br /><br />
+        <input
+          type="text"
+          name="subject"
+          placeholder="Subject"
+          value={formData.subject}
+          onChange={handleChange}
+        />
 
-      <input
-        type="email"
-        name="customer_email"
-        placeholder="Email"
-        value={formData.customer_email}
-        onChange={handleChange}
-      />
+        <textarea
+          name="description"
+          placeholder="Description"
+          rows="4"
+          value={formData.description}
+          onChange={handleChange}
+        />
 
-      <br /><br />
+        <button
+          className="create-btn"
+          onClick={createTicket}
+        >
+          Create Ticket
+        </button>
+      </div>
 
-      <input
-        type="text"
-        name="subject"
-        placeholder="Subject"
-        value={formData.subject}
-        onChange={handleChange}
-      />
+      <div className="form-box">
+        <h2>Search & Filter</h2>
 
-      <br /><br />
+        <input
+          type="text"
+          placeholder="Search tickets..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-      <textarea
-        name="description"
-        placeholder="Description"
-        value={formData.description}
-        onChange={handleChange}
-      />
+        <select
+          value={statusFilter}
+          onChange={(e) =>
+            setStatusFilter(e.target.value)
+          }
+        >
+          <option>All</option>
+          <option>Open</option>
+          <option>In Progress</option>
+          <option>Closed</option>
+        </select>
+      </div>
 
-      <br /><br />
+      <div className="table-box">
+        <h2>Ticket List</h2>
 
-      <button onClick={createTicket}>
-        Create Ticket
-      </button>
-
-      <hr />
-
-      <h2>Search & Filter</h2>
-
-      <input
-        type="text"
-        placeholder="Search tickets..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
-      <select
-        value={statusFilter}
-        onChange={(e) =>
-          setStatusFilter(e.target.value)
-        }
-      >
-        <option>All</option>
-        <option>Open</option>
-        <option>In Progress</option>
-        <option>Closed</option>
-      </select>
-
-      <hr />
-
-      <h2>Ticket List</h2>
-
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>Ticket ID</th>
-            <th>Customer</th>
-            <th>Subject</th>
-            <th>Status</th>
-            <th>Update Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {filteredTickets.map((ticket) => (
-            <tr key={ticket.ticket_id}>
-              <td>{ticket.ticket_id}</td>
-              <td>{ticket.customer_name}</td>
-              <td>{ticket.subject}</td>
-              <td>{ticket.status}</td>
-
-              <td>
-                <select
-                  value={ticket.status}
-                  onChange={(e) =>
-                    updateTicketStatus(
-                      ticket.ticket_id,
-                      e.target.value
-                    )
-                  }
-                >
-                  <option>Open</option>
-                  <option>In Progress</option>
-                  <option>Closed</option>
-                </select>
-              </td>
+        <table className="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Ticket ID</th>
+              <th>Customer</th>
+              <th>Subject</th>
+              <th>Status</th>
+              <th>Update Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {filteredTickets.map((ticket) => (
+              <tr key={ticket.ticket_id}>
+                <td>{ticket.ticket_id}</td>
+                <td>{ticket.customer_name}</td>
+                <td>{ticket.subject}</td>
+                <td>{ticket.status}</td>
+
+                <td>
+                  <select
+                    value={ticket.status}
+                    onChange={(e) =>
+                      updateTicketStatus(
+                        ticket.ticket_id,
+                        e.target.value
+                      )
+                    }
+                  >
+                    <option>Open</option>
+                    <option>In Progress</option>
+                    <option>Closed</option>
+                  </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
