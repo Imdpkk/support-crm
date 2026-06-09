@@ -3,11 +3,18 @@ from sqlalchemy.orm import Session
 from datetime import datetime
 
 from fastapi.middleware.cors import CORSMiddleware
-# app = FastAPI()
 
 from database import engine, get_db
 from models import Base, Ticket
-from schemas import TicketCreate, TicketUpdate
+
+from schemas import (
+    TicketCreate,
+    TicketUpdate,
+    TicketAnalysisRequest,
+    TicketAnalysisResponse
+)
+
+from ai_service import analyze_ticket
 
 app = FastAPI()
 
@@ -31,13 +38,16 @@ def home():
 
 
 @app.post("/api/tickets")
-def create_ticket(ticket: TicketCreate, db: Session = Depends(get_db)):
+def create_ticket(
+    ticket: TicketCreate,
+    db: Session = Depends(get_db)
+):
 
     ticket_count = db.query(Ticket).count() + 1
 
     ticket_id = f"TKT-{ticket_count:03d}"
 
-    new_ticket = Ticket( 
+    new_ticket = Ticket(
         ticket_id=ticket_id,
         customer_name=ticket.customer_name,
         customer_email=ticket.customer_email,
@@ -77,7 +87,9 @@ def get_tickets(
         )
 
     if status:
-        query = query.filter(Ticket.status == status)
+        query = query.filter(
+            Ticket.status == status
+        )
 
     tickets = query.all()
 
@@ -92,8 +104,12 @@ def get_tickets(
         for ticket in tickets
     ]
 
+
 @app.get("/api/tickets/{ticket_id}")
-def get_ticket(ticket_id: str, db: Session = Depends(get_db)):
+def get_ticket(
+    ticket_id: str,
+    db: Session = Depends(get_db)
+):
 
     ticket = db.query(Ticket).filter(
         Ticket.ticket_id == ticket_id
@@ -112,6 +128,7 @@ def get_ticket(ticket_id: str, db: Session = Depends(get_db)):
         "created_at": ticket.created_at,
         "updated_at": ticket.updated_at
     }
+
 
 @app.put("/api/tickets/{ticket_id}")
 def update_ticket(
@@ -137,4 +154,18 @@ def update_ticket(
         "message": "Ticket updated successfully",
         "ticket_id": ticket.ticket_id,
         "status": ticket.status
+    }
+
+
+@app.post("/api/analyze-ticket")
+def analyze_customer_ticket(
+    data: TicketAnalysisRequest
+):
+
+    result = analyze_ticket(
+        data.description
+    )
+
+    return {
+        "analysis": result
     }

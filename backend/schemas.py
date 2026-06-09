@@ -22,3 +22,10 @@ class TicketResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class TicketAnalysisRequest(BaseModel):
+    description: str
+
+
+class TicketAnalysisResponse(BaseModel):
+    analysis: str        
