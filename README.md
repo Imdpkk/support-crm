@@ -1,57 +1,262 @@
-# AI-Powered Customer Support CRM
+🚀 AI-Powered Customer Support CRM
 
-A full-stack Customer Support CRM built using FastAPI, React, and SQLite.
+A full-stack Customer Support CRM system built using React, FastAPI, SQLite, and SQLAlchemy. The application helps organizations manage customer support tickets efficiently through ticket tracking, status management, dashboard analytics, search/filtering, and AI-powered ticket categorization.
 
-## Features
+🌐 Live Demo
+Frontend (Vercel)
 
-* Create support tickets
-* View all tickets
-* Search tickets
-* Filter tickets by status
-* Update ticket status
-* Dashboard with ticket statistics
-* REST API with FastAPI
-* SQLite database integration
+🔗 https://support-crm-git-main-deepak-vishwakarma-s-projects.vercel.app/
 
-## Tech Stack
+Backend API (Render)
 
-### Frontend
+🔗 https://support-crm-yo12.onrender.com
 
-* React
-* Vite
-* Axios
-* Bootstrap
+API Documentation (Swagger)
 
-### Backend
+🔗 https://support-crm-yo12.onrender.com/docs
 
-* FastAPI
-* SQLAlchemy
-* SQLite
+GitHub Repository
 
-## Project Structure
+🔗 https://github.com/Imdpkk/support-crm
 
-support-crm/
-├── backend/
-├── frontend/
+📌 Problem Statement
 
-## API Endpoints
+Organizations receive hundreds of customer support requests daily.
 
-GET /api/tickets
+Examples:
 
+Payment Failed
+Login Issues
+Refund Requests
+Account Access Problems
+Technical Errors
+
+Managing these tickets manually can lead to:
+
+Slow response times
+Poor ticket tracking
+Incorrect prioritization
+Reduced customer satisfaction
+✅ Solution
+
+This CRM system centralizes customer support operations by:
+
+Creating and managing support tickets
+Tracking ticket status
+Searching and filtering tickets
+Providing dashboard analytics
+Automatically categorizing tickets using AI logic
+Improving support team productivity
+✨ Features
+Ticket Management
+Create support tickets
+View all tickets
+Update ticket status
+Track ticket lifecycle
+Dashboard Analytics
+Total Tickets
+Open Tickets
+In Progress Tickets
+Closed Tickets
+Search & Filter
+Search by Ticket ID
+Search by Customer Name
+Search by Subject
+Filter by Status
+AI-Powered Ticket Analysis
+
+Automatically analyzes customer descriptions and provides:
+
+Category
+Priority
+Summary
+
+Example:
+
+Input:
+
+Payment deducted but order not confirmed
+
+Output:
+
+Category: Payment
+Priority: High
+Summary: Customer reported a payment-related issue.
+🏗 System Architecture
+React Frontend
+       ↓
+Axios API Calls
+       ↓
+FastAPI Backend
+       ↓
+SQLAlchemy ORM
+       ↓
+SQLite Database
+💻 Tech Stack
+Frontend
+React.js
+Vite
+Axios
+Bootstrap
+CSS
+Backend
+Python
+FastAPI
+Uvicorn
+Database
+SQLite
+SQLAlchemy
+Deployment
+Vercel (Frontend)
+Render (Backend)
+Version Control
+Git
+GitHub
+📂 Project Structure
+support-crm
+│
+├── backend
+│   ├── main.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── database.py
+│   ├── ai_service.py
+│   ├── requirements.txt
+│   └── support_crm.db
+│
+├── frontend
+│   ├── src
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
+📡 API Endpoints
+Create Ticket
 POST /api/tickets
-
+Get All Tickets
+GET /api/tickets
+Get Ticket By ID
 GET /api/tickets/{ticket_id}
-
+Update Ticket Status
 PUT /api/tickets/{ticket_id}
+Analyze Ticket
+POST /api/analyze-ticket
+🚀 Installation & Setup
+Clone Repository
+git clone https://github.com/Imdpkk/support-crm.git
+cd support-crm
+Backend Setup
+cd backend
 
-## Screenshots
+Create Virtual Environment
 
-<img width="1920" height="1020" alt="ticket-management" src="https://github.com/user-attachments/assets/b6aa015c-8518-492a-8dd8-9313ff356c82" />
-<img width="1920" height="1020" alt="ticket created-succesfull" src="https://github.com/user-attachments/assets/73e9c4d5-6481-45fc-8853-e80c1947759e" />
-<img width="1920" height="1020" alt="Dashboard" src="https://github.com/user-attachments/assets/43bd5b88-25cb-4c70-8add-21c11b6b7c78" />
-<img width="1920" height="1020" alt="create-ticket" src="https://github.com/user-attachments/assets/2975c37f-8cd7-4108-8044-e9ab7d94d195" />
+python -m venv venv
 
+Activate Environment
 
-## Author
+.\venv\Scripts\activate
+
+Install Dependencies
+
+pip install -r requirements.txt
+
+Run Backend
+
+uvicorn main:app --reload
+
+Backend URL:
+
+http://127.0.0.1:8000
+
+Swagger Docs:
+
+http://127.0.0.1:8000/docs
+Frontend Setup
+cd frontend
+
+Install Dependencies
+
+npm install
+
+Run Frontend
+
+npm run dev
+
+Frontend URL:
+
+http://localhost:5173
+🧠 AI Ticket Analysis
+
+The system includes an AI-powered ticket analysis module that automatically classifies support tickets and assigns priorities.
+
+Supported Categories:
+
+Payment Issues
+Authentication Issues
+Refund Requests
+Technical Errors
+General Inquiries
+
+Benefits:
+
+Faster ticket processing
+Reduced manual effort
+Better prioritization
+Improved customer support efficiency
+🎯 Industry Use Cases
+E-Commerce
+Amazon
+Flipkart
+Meesho
+Banking
+SBI
+HDFC
+ICICI
+SaaS Platforms
+Salesforce
+Zoho
+Freshworks
+Cloud Platforms
+AWS Support
+Azure Support
+Google Cloud Support
+🚧 Challenges Faced
+CORS Issues
+
+Solved using FastAPI CORS Middleware.
+
+Frontend-Backend Communication
+
+Integrated React with FastAPI using Axios.
+
+Deployment Challenges
+
+Successfully deployed:
+
+Frontend on Vercel
+Backend on Render
+AI API Quota Limitations
+
+Implemented a local AI-based ticket classification engine to ensure uninterrupted functionality and demonstration capability.
+
+📈 Future Improvements
+User Authentication (JWT)
+Role-Based Access Control
+Email Notifications
+AI Model Integration (Gemini/OpenRouter)
+Ticket Attachments
+Admin Dashboard
+Cloud Database (PostgreSQL)
+👨‍💻 Developer
 
 Deepak Vishwakarma
+
+Software Engineering Student | Cloud & AI Enthusiast | Full Stack Developer
+
+GitHub:
+
+🔗 https://github.com/Imdpkk
