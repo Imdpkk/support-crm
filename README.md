@@ -118,8 +118,9 @@ FastAPI Backend
 SQLAlchemy ORM
       ↓
 SQLite Database 
-
-## 💻 Tech Stack
+---
+```md
+💻 Tech Stack
 Frontend
 React
 Vite
@@ -139,6 +140,7 @@ Render
 Version Control
 Git
 GitHub
+-----
 📡 API Endpoints
 Method	Endpoint
 POST	/api/tickets
@@ -161,6 +163,9 @@ Output:
 Category: Payment
 Priority: High
 Summary: Customer reported a payment-related issue.
+----
+
+```md
 🚧 Challenges Faced
 CORS Issue
 
