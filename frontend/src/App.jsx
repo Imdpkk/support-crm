@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
@@ -6,6 +7,7 @@ const API_URL = "https://support-crm-yo12.onrender.com";
 
 function App() {
   const [tickets, setTickets] = useState([]);
+  const [selectedTicket, setSelectedTicket] = useState(null);
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
@@ -30,6 +32,19 @@ function App() {
       setTickets(response.data);
     } catch (error) {
       console.log("Fetch Error:", error);
+    }
+  };
+
+  const viewTicket = async (ticketId) => {
+    try {
+      const response = await axios.get(
+        `${API_URL}/api/tickets/${ticketId}`
+      );
+
+      setSelectedTicket(response.data);
+    } catch (error) {
+      console.log(error);
+      alert("Unable to load ticket");
     }
   };
 
@@ -218,6 +233,7 @@ function App() {
               <th>Subject</th>
               <th>Status</th>
               <th>Update Status</th>
+              <th>View</th>
             </tr>
           </thead>
 
@@ -244,11 +260,67 @@ function App() {
                     <option>Closed</option>
                   </select>
                 </td>
+
+                <td>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() =>
+                      viewTicket(ticket.ticket_id)
+                    }
+                  >
+                    View
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {selectedTicket && (
+        <div className="form-box">
+          <h2>Ticket Details</h2>
+
+          <p>
+            <strong>Ticket ID:</strong>{" "}
+            {selectedTicket.ticket_id}
+          </p>
+
+          <p>
+            <strong>Customer:</strong>{" "}
+            {selectedTicket.customer_name}
+          </p>
+
+          <p>
+            <strong>Email:</strong>{" "}
+            {selectedTicket.customer_email}
+          </p>
+
+          <p>
+            <strong>Subject:</strong>{" "}
+            {selectedTicket.subject}
+          </p>
+
+          <p>
+            <strong>Description:</strong>{" "}
+            {selectedTicket.description}
+          </p>
+
+          <p>
+            <strong>Status:</strong>{" "}
+            {selectedTicket.status}
+          </p>
+
+          <button
+            className="btn btn-danger"
+            onClick={() =>
+              setSelectedTicket(null)
+            }
+          >
+            Close
+          </button>
+        </div>
+      )}
     </div>
   );
 }
