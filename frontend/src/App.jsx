@@ -132,26 +132,25 @@ function App() {
 
   return (
     <div className="container-box">
-      <h1>Customer Support CRM</h1>
-
+      <h1> AI-Powered Customer Support CRM</h1>
       <div className="dashboard-cards">
         <div className="card-box total">
-          Total Tickets
+          📊Total Tickets
           <h2>{totalTickets}</h2>
         </div>
 
         <div className="card-box open">
-          Open
+          🟠Open
           <h2>{openTickets}</h2>
         </div>
 
         <div className="card-box progress-card">
-          In Progress
+          🟣In Progress
           <h2>{progressTickets}</h2>
         </div>
 
         <div className="card-box closed">
-          Closed
+          ✅Closed
           <h2>{closedTickets}</h2>
         </div>
       </div>
