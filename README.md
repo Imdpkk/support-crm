@@ -161,7 +161,7 @@ Output:
 Category: Payment
 Priority: High
 Summary: Customer reported a payment-related issue.
------
+
 # 🚧 Challenges Faced
 CORS Issue
 
