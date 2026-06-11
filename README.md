@@ -105,10 +105,9 @@ This CRM system centralizes support operations and enables teams to:
 ![Ticket Management](screenshots/ticket-management.png)
 
 ---
-
 ## 🏗 Architecture
 
-```text
+
 React Frontend
       ↓
 Axios
@@ -119,7 +118,6 @@ SQLAlchemy ORM
       ↓
 SQLite Database 
 ---
-```md
 💻 Tech Stack
 Frontend
 React
@@ -140,7 +138,7 @@ Render
 Version Control
 Git
 GitHub
------
+---
 📡 API Endpoints
 Method	Endpoint
 POST	/api/tickets
@@ -163,9 +161,6 @@ Output:
 Category: Payment
 Priority: High
 Summary: Customer reported a payment-related issue.
-----
-
-```md
 -----
 # 🚧 Challenges Faced
 CORS Issue
@@ -185,7 +180,7 @@ Backend deployed on Render.
 AI API Quota Issue
 
 Implemented local AI classification logic as fallback.
------
+----
 # 📈 Future Enhancements
 JWT Authentication
 Role Based Access Control
@@ -194,7 +189,7 @@ PostgreSQL
 File Attachments
 Real AI Integration
 Admin Dashboard
------------
+----
 # 👨‍💻 Developer
 
 Deepak Vishwakarma
