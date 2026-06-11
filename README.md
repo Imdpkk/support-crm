@@ -166,7 +166,8 @@ Summary: Customer reported a payment-related issue.
 ----
 
 ```md
-🚧 Challenges Faced
+-----
+# 🚧 Challenges Faced
 CORS Issue
 
 Solved using FastAPI CORS Middleware.
@@ -184,8 +185,8 @@ Backend deployed on Render.
 AI API Quota Issue
 
 Implemented local AI classification logic as fallback.
-
-📈 Future Enhancements
+-----
+# 📈 Future Enhancements
 JWT Authentication
 Role Based Access Control
 Email Notifications
@@ -193,15 +194,9 @@ PostgreSQL
 File Attachments
 Real AI Integration
 Admin Dashboard
-👨‍💻 Developer
+-----------
+# 👨‍💻 Developer
 
 Deepak Vishwakarma
 
 Software Engineering Student | Cloud & AI Enthusiast
-
-<<<<<<< HEAD
-GitHub:
-https://github.com/Imdpkk
-=======
-🔗 https://github.com/Imdpkk
->>>>>>> a060abd (Final project submission)
